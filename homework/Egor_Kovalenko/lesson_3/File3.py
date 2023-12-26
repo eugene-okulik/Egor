@@ -1,8 +1,6 @@
 k = 5
-l = 2
-m = (k + l) / 2
-o = (k * l) ** 2
+p = 2
+m = (k + p) / 2
+o = (k * p) ** 2
 
-print(m,o)
-
-
+print(m, o)
