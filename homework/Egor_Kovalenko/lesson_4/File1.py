@@ -6,8 +6,8 @@ my_dict['set'] = {1, 2, 3, 4, 5}
 print(my_dict['tuple'][-1])
 my_dict['list'].append(56)
 my_dict['list'].pop(1)
-my_dict['dict'] = {'i am a tuple': 'i am not a value'}
-my_dict['dict'].pop('i am a tuple')
+my_dict['i am a tuple'] = 'i am not a value'
+my_dict['dict'].pop('one')
 my_dict['set'].add('test')
 my_dict['set'].remove(2)
 print(my_dict)
