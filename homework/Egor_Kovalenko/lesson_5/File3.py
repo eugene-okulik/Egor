@@ -1,3 +1,6 @@
 students = ['Ivanov', 'Petrov', 'Sidorov']
 subjects = ['math', 'biology', 'geography']
-print(', '.join(students), 'study these subjects:', ', '.join(subjects))
+students = ', '.join(students)
+subjects = ', '.join(subjects)
+text2 = f'{students} study these subjects: {subjects}'
+print(text2)
