@@ -21,8 +21,7 @@ print(date_1 + datetime.timedelta(weeks=1))
 new_line_split_1 = lines[1].split()[1:3]
 new_line_str_1 = ' '.join(new_line_split_1)
 date_2 = datetime.datetime.strptime(new_line_str_1, '%Y-%m-%d %H:%M:%S.%f')
-
-print(date_2.day)
+print(date_2.strftime('%A'))
 
 new_line_split_2 = lines[2].split()[1:3]
 new_line_str_2 = ' '.join(new_line_split_2)
