@@ -86,18 +86,19 @@ books.title as BookTitle,
 marks.value as MarkValue,
 lessons.title as LessonTitle,
 subjets.title as SubjectTitle
-from students 
-join `groups` 
-on students.group_id = `groups`.id 
-join books 
-on students.id = books.taken_by_student_id 
-join marks 
-on students.id = marks.student_id 
-join lessons 
-on marks.lesson_id = lessons.id 
+from students
+join `groups`
+on students.group_id = `groups`.id
+join books
+on students.id = books.taken_by_student_id
+join marks
+on students.id = marks.student_id
+join lessons
+on marks.lesson_id = lessons.id
 join subjets
 where students.id = {student_id}
 '''
+
 cursor.execute(last_query)
 all_data = cursor.fetchall()
 for data in all_data:
@@ -107,7 +108,6 @@ for data in all_data:
           data['MarkValue'],
           data['LessonTitle'],
           data['SubjectTitle'])
-
 
 connect.commit()
 
