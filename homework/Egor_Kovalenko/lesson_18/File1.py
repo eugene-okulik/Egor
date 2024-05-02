@@ -31,7 +31,7 @@ def get_a_new_post_id():
 
 def get_single_post():
     post_id = get_a_new_post_id()
-    response = requests.get(f'https://api.restful-api.dev/objects{post_id}').json()git
+    response = requests.get(f'https://api.restful-api.dev/objects{post_id}').json()
     assert response['id'] == post_id
 
 
