@@ -36,7 +36,7 @@ def get_single_post():
 
 
 def clear_post_id(post_id):
-    response = requests.delete(f'https://api.restful-api.dev/objects{post_id}')
+    requests.delete(f'https://api.restful-api.dev/objects{post_id}')
 
 
 def update_post():
@@ -64,12 +64,14 @@ def partially_update_post():
         }
     }
     response = requests.patch(f'https://api.restful-api.dev/objects{post_id}', json=body).json()
+    print(response)
     clear_post_id(post_id)
 
 
 def delete_object():
     post_id = get_a_new_post_id()
-    response = requests.delete(f'https://api.restful-api.dev/objects{post_id}').json()
+    response = requests.delete(f'https://api.restful-api.dev/objects{post_id}')
+    print(response.json())
 
 
 add_a_post()
