@@ -103,6 +103,5 @@ def test_create_new_posts(print_words_before_tests, input_param):
 def test_delete_post(get_a_new_post_id, print_words_before_tests):
     response = requests.delete(f'{BASE_URL}/objects/{get_a_new_post_id}')
     assert response.status_code == 200, GlobalErrors.WRONG_STATUS_CODE.value
-
     response = requests.get(f'{BASE_URL}/objects/{get_a_new_post_id}')
     assert response.status_code == 404, GlobalErrors.WRONG_STATUS_CODE.value

@@ -1,6 +1,6 @@
 from enum import Enum
 
-""" 
+"""
 класс Enum c описанием ошибки для использования в assert.
 """
 
