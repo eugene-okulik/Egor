@@ -1,5 +1,8 @@
 import requests
 import pytest
+from enums import GlobalErrors
+
+BASE_URL = 'https://api.restful-api.dev'
 
 
 @pytest.fixture(scope='session')
@@ -29,25 +32,25 @@ def get_a_new_post_id():
     }
     headers = {'Content-Type': 'application/json'}
     response = requests.post(
-        url='https://api.restful-api.dev/objects',
+        url=f'{BASE_URL}/objects',
         json=body,
         headers=headers
     )
     obj_id = response.json()['id']
     yield obj_id
-    requests.delete(f'https://api.restful-api.dev/objects/{obj_id}')
+    requests.delete(f'{BASE_URL}/objects/{obj_id}')
 
 
 @pytest.mark.medium
 def test_get_single_post(get_a_new_post_id, print_words_before_and_after_tests):
     """Тест проверки, что полученный id, равен id созданного объекта"""
-    response = requests.get(f'https://api.restful-api.dev/objects/{get_a_new_post_id}')
+    response = requests.get(f'{BASE_URL}/objects/{get_a_new_post_id}')
     assert response.json()['id'] == get_a_new_post_id
 
 
 @pytest.mark.medium
 def test_get_all_posts(print_words_before_tests):
-    response = requests.get('https://api.restful-api.dev/objects').json()
+    response = requests.get(f'{BASE_URL}/objects').json()
     length_posts = len(response)
     assert len(response) == length_posts
 
@@ -60,7 +63,7 @@ def test_partially_update_post(get_a_new_post_id, print_words_before_tests):
             "year": 2023
         }
     }
-    response = requests.patch(f'https://api.restful-api.dev/objects/{get_a_new_post_id}', json=body)
+    response = requests.patch(f'{BASE_URL}/objects/{get_a_new_post_id}', json=body)
     assert response.json()['name'] == "HOME-PC_1"
 
 
@@ -89,8 +92,17 @@ def test_partially_update_post(get_a_new_post_id, print_words_before_tests):
 def test_create_new_posts(print_words_before_tests, input_param):
     headers = {'Content-Type': 'application/json'}
     response = requests.post(
-        url='https://api.restful-api.dev/objects/',
+        url=f'{BASE_URL}/objects/',
         json=input_param,
         headers=headers
     )
-    assert response.status_code == 200, 'Status code is incorrect'
+    assert response.status_code == 200, GlobalErrors.WRONG_STATUS_CODE.value
+
+
+@pytest.mark.critical
+def test_delete_post(get_a_new_post_id, print_words_before_tests):
+    response = requests.delete(f'{BASE_URL}/objects/{get_a_new_post_id}')
+    assert response.status_code == 200, GlobalErrors.WRONG_STATUS_CODE.value
+
+    response = requests.get(f'{BASE_URL}/objects/{get_a_new_post_id}')
+    assert response.status_code == 404, GlobalErrors.WRONG_STATUS_CODE.value
