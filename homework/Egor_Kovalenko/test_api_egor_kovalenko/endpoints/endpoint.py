@@ -37,6 +37,3 @@ class Endpoint:
     def assert_response_is_400(self):
         """ Проверка статус-код 400"""
         assert self.response.status_code == 400, GlobalErrorMessages.WRONG_STATUS_CODE.value
-
-
-
