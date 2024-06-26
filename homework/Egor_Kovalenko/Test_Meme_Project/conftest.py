@@ -37,8 +37,6 @@ def create_post_endpoint():
     return PostEndpoint()
 
 
-
-
 @pytest.fixture()
 def authorization_token(getting_authorize):
     body = {

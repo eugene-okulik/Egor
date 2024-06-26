@@ -1,6 +1,5 @@
 import pytest
 from src.pydantic_schemas.post import MemeData
-from conftest import meme_id
 
 VALID_BODY = [
     {
