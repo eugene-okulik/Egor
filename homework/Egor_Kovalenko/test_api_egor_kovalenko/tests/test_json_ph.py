@@ -85,7 +85,7 @@ def test_get_all_posts(get_post_endpoint):
 def test_check_length_posts(get_post_endpoint, length_post):
     get_post_endpoint.get_length()
     get_post_endpoint.check_length_of_response(length_post)
-    # get_post_endpoint.assert_response_is_200()
+    get_post_endpoint.assert_response_is_200()
 
 
 @pytest.mark.smoke('smoke test')
