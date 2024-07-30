@@ -59,7 +59,8 @@ def test_fill_student_registration_form(driver):
     day_input.click()
 
     subjects_element = driver.find_element(By.ID, 'subjectsInput')
-    subjects_element.send_keys('Scifi', '2024')
+    subjects_element.send_keys('Bio')
+    subjects_element.send_keys(Keys.ENTER)
 
     hobby_element = driver.find_element(By.XPATH, '//*[@for="hobbies-checkbox-2"]')
     hobby_element.click()
